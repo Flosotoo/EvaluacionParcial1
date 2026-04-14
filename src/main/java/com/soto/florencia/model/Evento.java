@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Evaluacion {
+public class Evento {
     @NotNull(message = "El id no puede estar vacio")
-    private String id;
+    private int id;
 
     @NotBlank(message = "El nombre del evento no puede ir vacio")
     private String nombre;
@@ -29,18 +29,6 @@ public class Evaluacion {
     @NotNull(message = "La cantidad de participantes no puede ir en blanco")
     @Min(value = 1, message = "Debe tener uno o mas participantes")
     private int cant_part;
-
-    public Evaluacion(@NotNull(message = "El id no puede estar vacio") String id,
-            @NotBlank(message = "El nombre del evento no puede ir vacio") String nombre,
-            @NotNull(message = "El dia de la fecha no puede estar vacio") @Min(value = 1, message = "Debe ser mayor o igual a 1") @Max(value = 31, message = "Debe ser igual o menos a 31") int dia,
-            @NotBlank(message = "No puee ir vacio") String ubicacion,
-            @NotNull(message = "La cantidad de participantes no puede ir en blanco") @Min(value = 1, message = "Debe tener uno o mas participantes") int cant_part) {
-        this.id = id;
-        this.nombre = nombre;
-        this.dia = dia;
-        this.ubicacion = ubicacion;
-        this.cant_part = cant_part;
-    }
 
 
 }
