@@ -64,5 +64,22 @@ public class EventoController {
     public ResponseEntity<String> deleteEvento(@PathVariable int id){
         return ResponseEntity.ok(eventoService.Delete(id));
     }
+
+    @GetMapping("inicializar")
+    public ResponseEntity<String> inicializar(){
+        eventoService.seed();
+        return ResponseEntity.ok("Eventos creados correctamente, yuju");
+    }
+    
+    @GetMapping("tipo/{tipo_evento}")
+    public ResponseEntity<?> getEventosPorTipo(@PathVariable String tipo_evento){
+        List<Evento> filtrados = eventoService.readByTipo(tipo_evento);
+        if(filtrados.isEmpty()){
+            return ResponseEntity.status(404).body("No se encontraron eventos de ese tipo");
+        }
+        return ResponseEntity.ok(filtrados);
+    }
+    
+    
     
 }

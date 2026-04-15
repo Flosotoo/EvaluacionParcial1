@@ -35,4 +35,12 @@ public class EventoService {
     public String Delete(int id) {
         return eventoRepository.borrar(id);
     }
+
+    public void seed() {
+        eventoRepository.seed();
+    }
+
+    public List<Evento> readByTipo(String tipo_evento) {
+        return eventoRepository.buscarPortTipo(tipo_evento);
+    }
 }

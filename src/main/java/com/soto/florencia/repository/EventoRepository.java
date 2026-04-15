@@ -9,6 +9,7 @@ import com.soto.florencia.model.Evento;
 
 @Repository
 public class EventoRepository {
+
     private List<Evento> listaEventos = new ArrayList<>();
 
     public List<Evento> obtenerEvento() {
@@ -16,8 +17,8 @@ public class EventoRepository {
     }
 
     public Evento eventoPorId(int id) {
-        for(Evento evento : listaEventos){
-            if(id == evento.getId()){
+        for (Evento evento : listaEventos) {
+            if (id == evento.getId()) {
                 return evento;
             }
         }
@@ -31,7 +32,7 @@ public class EventoRepository {
 
     public Evento modificarEvento(int id, Evento evento) {
         Evento buscado = eventoPorId(id);
-        if(buscado != null){
+        if (buscado != null) {
             buscado.setNombre(evento.getNombre());
             buscado.setDia(evento.getDia());
             buscado.setUbicacion(evento.getUbicacion());
@@ -42,11 +43,24 @@ public class EventoRepository {
     }
 
     public String borrar(int id) {
-        if(listaEventos.remove(eventoPorId(id))){
+        if (listaEventos.remove(eventoPorId(id))) {
             return "Evento eliminado";
         }
         return "Error al eliminar";
     }
 
+    public void seed() {
+        agregar(new Evento(1, "Lollapalooza", "Concierto", 3, "Parque Vicentenario", 1500));
 
+    }
+
+    public List<Evento> buscarPortTipo(String tipo_evento) {
+        List<Evento> filtrados = new ArrayList<>();
+        for(Evento evento : listaEventos){
+            if(evento.getTipo_evento().equalsIgnoreCase(tipo_evento)){
+                filtrados.add(evento);
+            }
+        }
+        return filtrados;
+    }
 }

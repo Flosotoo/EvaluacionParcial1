@@ -18,6 +18,9 @@ public class Evento {
     @NotBlank(message = "El nombre del evento no puede ir vacio")
     private String nombre;
 
+    @NotBlank
+    private String tipo_evento;
+
     @NotNull(message = "El dia de la fecha no puede estar vacio")
     @Min(value = 1, message = "Debe ser mayor o igual a 1")
     @Max(value = 31, message = "Debe ser igual o menos a 31")
