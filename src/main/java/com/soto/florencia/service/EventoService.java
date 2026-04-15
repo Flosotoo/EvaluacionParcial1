@@ -2,14 +2,11 @@ package com.soto.florencia.service;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.soto.florencia.model.Evento;
 import com.soto.florencia.repository.EventoRepository;
-
-import jakarta.validation.Valid;
 
 @Service
 public class EventoService {
