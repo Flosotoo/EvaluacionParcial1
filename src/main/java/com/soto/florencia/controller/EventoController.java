@@ -18,8 +18,6 @@ import com.soto.florencia.service.EventoService;
 
 import jakarta.validation.Valid;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/v1/eventos")
@@ -36,7 +34,7 @@ public class EventoController {
         return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("{id]")
+    @GetMapping("{id}")
     public ResponseEntity<?> getEventosPorId(@PathVariable int id){
         Evento evento = eventoService.readById(id);
         if(evento == null){
@@ -47,7 +45,10 @@ public class EventoController {
 
     @PostMapping
     public ResponseEntity<String>postEvento(@Valid @RequestBody Evento evento){
-        eventoService.create(evento);
+        Evento creado = eventoService.create(evento);
+        if(creado == null){
+            return ResponseEntity.status(400).body("El ID del evento ya existe");
+        }
         return ResponseEntity.ok("Evento guardado exitosamente");
     } 
 

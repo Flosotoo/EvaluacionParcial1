@@ -26,6 +26,9 @@ public class EventoRepository {
     }
 
     public Evento agregar(Evento evento) {
+        if(eventoPorId(evento.getId()) != null){
+            return null;
+        }
         listaEventos.add(evento);
         return evento;
     }
